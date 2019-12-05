@@ -1,6 +1,6 @@
 {
   "name": "angular-schematics-tutorial",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A schematics demo project",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -24,5 +24,6 @@
     "@types/node": "^8.0.31",
     "jasmine": "^3.3.1",
     "typescript": "~3.5.3"
-  }
+  },
+  "repository": "https://github.com/Sanotsu/angular-schematics-tutorial"
 }
