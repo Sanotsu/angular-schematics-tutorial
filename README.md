@@ -48,6 +48,7 @@ collection.json 配置一般一个原理图就只配置一次，所以大部分�
 
 3、运行原理图
 因为创建的是一个空白原理图，运行是不会有任何输出显示的。
+
 3.1 在当前位置运行：
 先构建：
 
@@ -1004,7 +1005,8 @@ david@ubuntu:~/TTT/angular-demo$
 ## 1 使用 npm link 本地调试
 
 可以在我们的 angular-schematics-tutorial 项目目录下，运行`npm link`指令。
-npm link 指令细节可参看https://docs.npmjs.com/cli/link.html，主要作用就是创建一个全局可访问链接符号。
+npm link 指令细节可参看https://docs.npmjs.com/cli/link.html
+。主要作用就是创建一个全局可访问链接符号。
 执行之后得到的效果应该如下：
 
 ```
