@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "componentSchema",
+    "title": "component options schema.",
+    "type": "object",
+    "descripiton": "创建一个component范本",
+    "properties": {
+        "name": {
+            "description": "component的名字.",
+            "type": "string",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            },
+            "x-prompt": "你想创建的component的名字:"
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

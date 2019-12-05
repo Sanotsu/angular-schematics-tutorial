@@ -1,0 +1,10 @@
+{
+    "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+    "schematics": {
+        "migration002": {
+            "version": "0.0.2",
+            "description": "更新angular-schematics-tutorial到0.0.2版本时执行的更新",
+            "factory": "./ng-update/index#update"
+        }
+    }
+}

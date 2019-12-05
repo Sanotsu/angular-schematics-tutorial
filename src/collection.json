@@ -1,0 +1,20 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "component": {
+      "description": "创建一个通用angular component模板文件",
+      "factory": "./component/index#genComponent",
+      "schema": "./component/schema.json"
+    },
+    "crudService": {
+      "description": "创建一个具有 CRUD 基本函数 的service组件",
+      "factory": "./crud-service/index#crud",
+      "schema": "./crud-service/schema.json"
+    },
+    "ng-add": {
+      "description": "给angular项目中添加 Font-Awesome库。",
+      "factory": "./ng-add",
+      "schema": "./ng-add/schema.json"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "angular-schematics-tutorial",
+  "version": "0.0.2",
+  "description": "A schematics demo project",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "build:watch": "tsc -p tsconfig.json --watch"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "ng-update": {
+    "migrations": "./src/migration.json"
+  },
+  "dependencies": {
+    "@angular-devkit/core": "^8.3.20",
+    "@angular-devkit/schematics": "^8.3.20",
+    "@schematics/angular": "^8.3.20",
+    "@types/jasmine": "^3.3.9",
+    "@types/node": "^8.0.31",
+    "jasmine": "^3.3.1",
+    "typescript": "~3.5.3"
+  }
+}

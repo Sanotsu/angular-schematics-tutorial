@@ -1,0 +1,72 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { WebServer } from '../_common/web-server';
+
+<% if (transform) {%>import { map } from 'rxjs/operators';<%}%>
+
+const API_URL = '/api/<%= dasherize(name) %>';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class <%= classify(name) %>CrudService {
+  // 後臺服務器地址
+  private URL: string;
+
+  constructor(private http: HttpClient, private webServer: WebServer) {
+    // 獲取服務器地址
+    this.URL = this.webServer.getWebServer() + API_URL;
+  }
+
+  retrieve<%= classify(name) %>(params: any) {
+    return this.http.post(this.URL + '/retrieve', { params });
+  }
+
+  create<%= classify(name) %>(<%= camelize(name) %>: <%= classify(name) %>) {
+    return this.http.post(this.URL + '/create', { <%= camelize(name) %> });
+  }
+
+  update<%= classify(name) %>(params: any): Observable<<%= classify(name) %>> {
+    <% if (transform) {%> 
+      return this.http.post<<%= classify(name) %>Response >(this.URL + '/update', { params }).pipe(map(this.transform));
+    <% } else { %>
+      return this.http.post<<%= classify(name) %>>(this.URL + '/update', { params });
+      <%}%>
+    }
+
+  delete<%= classify(name) %>(params: any) {
+    return this.http.post(this.URL + '/delete', { params });
+  }
+
+  retrieveAll<%= classify(name) %>() {
+    return this.http.post<<%= classify(name) %>>(this.URL + '/retrieve/all', {});
+  }
+
+<% if (transform) {%>
+  private transform(response: <%= classify(name) %>Response): <%= classify(name) %> {
+    return {
+      inventory: response.weight,
+      unitPrice: response.unitPrice,
+    };
+  }
+<%}%>
+
+}
+
+// 例如一般产品信息是库存和单价,但库存是数量
+export interface <%=classify(name) %> {
+  inventory: number;
+  unitPrice: number;
+}
+
+<% if (transform) { %>
+// 如果像葡萄,库存就不是数量了,变为重量,则需要transform,改变返回值
+interface <%= classify(name) %>Response {
+  weight: number;
+  unitPrice: number;
+}
+<% } %>
+
+

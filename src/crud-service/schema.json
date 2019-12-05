@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "crudServiceSchema",
+    "title": "crud-service options schema.",
+    "type": "object",
+    "descripiton": "创建一个具有 CRUD 基本函数 的service组件",
+    "properties": {
+        "name": {
+            "description": "crud service的名称",
+            "type": "string",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            },
+            "x-prompt": "请输入创建的CRUD service的名称:"
+        },
+        "transform": {
+            "type": "boolean",
+            "default": false
+        },
+        "project": {
+            "type": "string",
+            "description": "在特定的 angular cli工作区中生成"
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

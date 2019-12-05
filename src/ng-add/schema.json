@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "NgAddSchema",
+    "title": "Ng-Add Schema",
+    "type": "object",
+    "description": "给angular项目添加 Font-Awesome。",
+    "properties": {
+        "project": {
+            "type": "string",
+            "description": "给angular项目添加 Font-Awesome。"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+import { TestBed, async, inject } from '@angular/core/testing';
+import { <%= classify(name) %>CrudService } from './<%= dasherize(name) %>-crud.service';
+
+describe('Service: <%= classify(name) %>Crud', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [<%= classify(name) %>CrudService]
+    });
+  });
+
+  it('should ...', inject([<%= classify(name) %>CrudService], (service: <%= classify(name) %>CrudService) => {
+    expect(service).toBeTruthy();
+  }));
+});
