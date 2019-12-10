@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**目录**
 
 - [1 angular schematics 101 :基本内容说明](#1-angular-schematics-101-%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9%E8%AF%B4%E6%98%8E)
   - [基础三问:angular schematics 是什么?有什么用?怎么用?](#%E5%9F%BA%E7%A1%80%E4%B8%89%E9%97%AEangular-schematics-%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%E6%80%8E%E4%B9%88%E7%94%A8)
@@ -1265,4 +1266,4 @@ david@ubuntu:~/TTT/angular-test$
 主要参考：  
 https://ithelp.ithome.com.tw/articles/10222826  
 https://medium.com/@tomastrajan/total-guide-to-custom-angular-schematics-5c50cf90cdb4  
-和angular官方文档：https://angular.cn/guide/schematics
+和 angular 官方文档：https://angular.cn/guide/schematics
