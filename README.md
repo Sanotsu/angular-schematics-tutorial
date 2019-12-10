@@ -1,3 +1,42 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [1 angular schematics 101 :基本内容说明](#1-angular-schematics-101-%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9%E8%AF%B4%E6%98%8E)
+  - [基础三问:angular schematics 是什么?有什么用?怎么用?](#%E5%9F%BA%E7%A1%80%E4%B8%89%E9%97%AEangular-schematics-%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%E6%80%8E%E4%B9%88%E7%94%A8)
+    - [1 angular schematics 是什么?](#1-angular-schematics-%E6%98%AF%E4%BB%80%E4%B9%88)
+    - [2 所以 angular schematics 只是模板代码生成器?](#2-%E6%89%80%E4%BB%A5-angular-schematics-%E5%8F%AA%E6%98%AF%E6%A8%A1%E6%9D%BF%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8)
+    - [3.简单上手 angular schematics：创建一个 hello](#3%E7%AE%80%E5%8D%95%E4%B8%8A%E6%89%8B-angular-schematics%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-hello)
+- [2 angular schematics 实现 ng generator 使用模板生成组件](#2-angular-schematics-%E5%AE%9E%E7%8E%B0-ng-generator-%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF%E7%94%9F%E6%88%90%E7%BB%84%E4%BB%B6)
+  - [0、准备工作](#0%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C)
+  - [1 实现创建通用 component 组件](#1-%E5%AE%9E%E7%8E%B0%E5%88%9B%E5%BB%BA%E9%80%9A%E7%94%A8-component-%E7%BB%84%E4%BB%B6)
+    - [1.1 创建 component 文件模板 template](#11-%E5%88%9B%E5%BB%BA-component-%E6%96%87%E4%BB%B6%E6%A8%A1%E6%9D%BF-template)
+    - [1.2 配置 schema.json,定义该原理图可用选项](#12-%E9%85%8D%E7%BD%AE-schemajson%E5%AE%9A%E4%B9%89%E8%AF%A5%E5%8E%9F%E7%90%86%E5%9B%BE%E5%8F%AF%E7%94%A8%E9%80%89%E9%A1%B9)
+    - [1.3 创建 schema.d.ts,定义的各个选项的值](#13-%E5%88%9B%E5%BB%BA-schemadts%E5%AE%9A%E4%B9%89%E7%9A%84%E5%90%84%E4%B8%AA%E9%80%89%E9%A1%B9%E7%9A%84%E5%80%BC)
+    - [1.4 编写规则工厂逻辑代码](#14-%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99%E5%B7%A5%E5%8E%82%E9%80%BB%E8%BE%91%E4%BB%A3%E7%A0%81)
+    - [1.5 编写测试用例测试代码](#15-%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81)
+    - [1.6 实际 angular 项目运行](#16-%E5%AE%9E%E9%99%85-angular-%E9%A1%B9%E7%9B%AE%E8%BF%90%E8%A1%8C)
+- [3 angular schematics 实现 ng add 指令安装模块](#3-angular-schematics-%E5%AE%9E%E7%8E%B0-ng-add-%E6%8C%87%E4%BB%A4%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97)
+  - [1 创建 ng add 的 schema.json 并配置](#1-%E5%88%9B%E5%BB%BA-ng-add-%E7%9A%84-schemajson-%E5%B9%B6%E9%85%8D%E7%BD%AE)
+  - [2 生成并导出 schema.d.ts 文件](#2-%E7%94%9F%E6%88%90%E5%B9%B6%E5%AF%BC%E5%87%BA-schemadts-%E6%96%87%E4%BB%B6)
+  - [3 编写规则工厂实现逻辑代码](#3-%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99%E5%B7%A5%E5%8E%82%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91%E4%BB%A3%E7%A0%81)
+  - [4 测试并使用](#4-%E6%B5%8B%E8%AF%95%E5%B9%B6%E4%BD%BF%E7%94%A8)
+- [4 angular schematics 实现 ng update 更新模块时修改指定组件内容](#4-angular-schematics-%E5%AE%9E%E7%8E%B0-ng-update-%E6%9B%B4%E6%96%B0%E6%A8%A1%E5%9D%97%E6%97%B6%E4%BF%AE%E6%94%B9%E6%8C%87%E5%AE%9A%E7%BB%84%E4%BB%B6%E5%86%85%E5%AE%B9)
+  - [1、创建 migration.json 文件](#1%E5%88%9B%E5%BB%BA-migrationjson-%E6%96%87%E4%BB%B6)
+  - [2 在 package.json 中声明 ug-update 配置](#2-%E5%9C%A8-packagejson-%E4%B8%AD%E5%A3%B0%E6%98%8E-ug-update-%E9%85%8D%E7%BD%AE)
+  - [3 编写更新执行的规则工厂逻辑代码](#3-%E7%BC%96%E5%86%99%E6%9B%B4%E6%96%B0%E6%89%A7%E8%A1%8C%E7%9A%84%E8%A7%84%E5%88%99%E5%B7%A5%E5%8E%82%E9%80%BB%E8%BE%91%E4%BB%A3%E7%A0%81)
+  - [4 测试并使用](#4-%E6%B5%8B%E8%AF%95%E5%B9%B6%E4%BD%BF%E7%94%A8-1)
+- [5 将原理图 package 发布并使用](#5-%E5%B0%86%E5%8E%9F%E7%90%86%E5%9B%BE-package-%E5%8F%91%E5%B8%83%E5%B9%B6%E4%BD%BF%E7%94%A8)
+  - [1 使用 npm link 本地调试](#1-%E4%BD%BF%E7%94%A8-npm-link-%E6%9C%AC%E5%9C%B0%E8%B0%83%E8%AF%95)
+  - [2 将原理图 package 发布到仓库并使用](#2-%E5%B0%86%E5%8E%9F%E7%90%86%E5%9B%BE-package-%E5%8F%91%E5%B8%83%E5%88%B0%E4%BB%93%E5%BA%93%E5%B9%B6%E4%BD%BF%E7%94%A8)
+    - [1、添加帐号，在终端输入 adduser，按提示填写](#1%E6%B7%BB%E5%8A%A0%E5%B8%90%E5%8F%B7%E5%9C%A8%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5-adduser%E6%8C%89%E6%8F%90%E7%A4%BA%E5%A1%AB%E5%86%99)
+    - [2、在根目录执行`npm publish`](#2%E5%9C%A8%E6%A0%B9%E7%9B%AE%E5%BD%95%E6%89%A7%E8%A1%8Cnpm-publish)
+    - [3 发布 0.0.2 版本的包](#3-%E5%8F%91%E5%B8%83-002-%E7%89%88%E6%9C%AC%E7%9A%84%E5%8C%85)
+    - [4 实际测试使用](#4-%E5%AE%9E%E9%99%85%E6%B5%8B%E8%AF%95%E4%BD%BF%E7%94%A8)
+- [总结](#%E6%80%BB%E7%BB%93)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 1 angular schematics 101 :基本内容说明
 
 ## 基础三问:angular schematics 是什么?有什么用?怎么用?
@@ -1102,7 +1141,9 @@ david@ubuntu:~/TTT/angular-schematics-tutorial$
 
 logged in 表示成功
 
-### 2、在根目录执行`npm publish`，得到结果如下：
+### 2、在根目录执行`npm publish`
+
+得到结果如下：
 
 ```
 david@ubuntu:~/TTT/angular-schematics-tutorial$ npm publish
