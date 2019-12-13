@@ -847,7 +847,14 @@ function sortObjectByKeys(obj: any) {
 
 如果需要写测试用例，那么可以 ng-add 文件夹下添加 index_spec.ts 并写代码(可参看源码)
 
-直接在 angular 项目中实践：  
+直接在 angular 项目中实践：
+
+```
+schematics ../angular-schematics-tutorial/src/collection.json:ng-add --debug=false
+```
+
+效果如下：
+
 ![ng add的效果](./screenshots/ngadd的效果.png)
 
 如果到这里都正常，那么恭喜你，自定义原理库实现 ng add 也成功了！
@@ -912,7 +919,7 @@ ug update 的原理逻辑还是比较复杂了，其实直接看 angular-cli 的
 
 以上只是一些我在知道结果之后抛出来给大家看的关键点，大家可以深入研究。我在这里，就简单写个示例，供分析。
 
-**注意：为了后续 ng update 实际使用效果，在此时进行后续作业前，可见现在的代码备份一下，作为 0.0.1 版本。**版本号的更改当然在 package.json 中。
+**注意：为了后续 ng update 实际使用效果，在此时进行后续作业前，可将现在的代码备份一下，作为 0.0.1 版本。** 版本号的更改当然在 package.json 中。
 
 **本节需要实现的目标是：  
 1、本 angular-schematics-tutorial package 在 angular 项目中使用时，可以使用 ng update 进行升级  
@@ -1112,7 +1119,7 @@ david@ubuntu:~/TTT/angular-demo$
 注意：如果之前执行过，最好撤销后再试。
 看到上面显示这一句`Skipping installation: Package already installed`，这里 already installed 的 package 指的是 angular-schematics-tutorial，原因在于我们使用 npm link angular-schematics-tutorial 已经做了链接了。
 
-**那么，能否直接测试 ng update 呢？目前我是没有成功的。**因为 npm link 无法同时测试两个版本？这点可请大家指出。
+**那么，能否直接测试 ng update 呢？目前我是没有成功的。** 因为 npm link 无法同时测试两个版本？这点可请大家指出。
 
 注意，测试完了请使用 npm unlink 去清除那些链接，避免混乱等情况。
 
@@ -1176,7 +1183,7 @@ david@ubuntu:~/TTT/angular-schematics-tutorial$
 
 ### 4 实际测试使用
 
-现在，我们的 angular-schematics-tutorial 时就是一个可以被所有人访问的原理图工具包了，那么我们就可以想实际使用包一样去测试它了。
+现在，我们的 angular-schematics-tutorial 就是一个可以被所有人访问的原理图工具包了，那么我们就可以像实际使用包一样去测试它了。
 
 为了避免干扰，可以删除之前的 angular-demo 测试项目，新建一个 angular-test 的新项目
 
